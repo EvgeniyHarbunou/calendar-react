@@ -14,9 +14,9 @@
     height: 70px;
     text-align: center;
     border: 1px solid black;  
+    cursor: pointer;
 
     &:hover{
-        cursor: pointer;
         background-color: $background-mouse;
     }
 }
@@ -24,4 +24,12 @@
 
 .current-day{
     background-color: $background-selected;
+}
+
+td.month-outside{
+   color: lightgray;
+   cursor: unset;
+   &:hover{
+       background-color: initial;
+   }
 }

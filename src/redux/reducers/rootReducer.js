@@ -1,5 +1,6 @@
-import {combineReducers} from 'redux';
+import { combineReducers } from "redux";
+import { datesReducer } from "./datesReducer";
 
-export default combineReducers({
-
-})
+export const rootReducer = combineReducers({
+    dates: datesReducer,
+});

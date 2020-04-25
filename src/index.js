@@ -4,27 +4,21 @@ import { Provider } from "react-redux";
 import ReactDOM from "react-dom";
 import App from "./components/app/App";
 import * as serviceWorker from "./serviceWorker";
-import rootReducer from './redux/reducers/rootReducer';
+import { rootReducer } from "./redux/reducers/rootReducer";
 import "./index.scss";
 
 const composeEnhancers =
-  typeof window === 'object' &&
-  window.__REDUX_DEVTOOLS_EXTENSION_COMPOSE__ ?   
-    window.__REDUX_DEVTOOLS_EXTENSION_COMPOSE__({
-    }) : compose;
+  typeof window === "object" && window.__REDUX_DEVTOOLS_EXTENSION_COMPOSE__
+    ? window.__REDUX_DEVTOOLS_EXTENSION_COMPOSE__({})
+    : compose;
 
-const store = createStore(
-  rootReducer,
-  composeEnhancers(
-   
-  )
-  );
+const store = createStore(rootReducer, composeEnhancers());
 
 ReactDOM.render(
   <React.StrictMode>
-    {/* <Provider store={store}> */}
+    <Provider store={store}>
       <App />
-    {/* </Provider> */}
+    </Provider>
   </React.StrictMode>,
   document.getElementById("root")
 );
