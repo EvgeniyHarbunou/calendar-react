@@ -1,0 +1,25 @@
+@import "../../styles/vars";
+
+.month-table{
+   
+    border: 2px solid black;
+    border-collapse: collapse;
+}
+.table-head{
+    border: 1px solid black;
+}
+.table-body td{
+    width: 150px;
+    height: 80vh;
+    text-align: left;
+    border: 1px solid black;  
+    cursor: pointer;
+
+    &:hover{
+        background-color: $background-mouse;
+    }
+}
+
+.current-day{
+    background-color: $background-selected;
+}

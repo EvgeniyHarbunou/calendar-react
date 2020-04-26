@@ -1,35 +1,48 @@
 @import "../../styles/vars";
 
-.month-table{
+.month-table {
    
     border: 2px solid black;
     border-collapse: collapse;
 }
-.table-head{
-    height: 50px;
+.size-default.month-table { 
+    width: 1050px;
+    height: 350px;
+    font-size: 1rem;
+}
+.size-small.month-table { 
+    width: 150px;
+    height: 150px;
+    font-size: .6rem;
+    border: 1px solid lightgray;
+}
+
+.table-head {
     border: 1px solid black;
 }
-.table-body td{
-    width: 150px;
-    height: 70px;
+
+.table-body td {
+    width: 14%;
     text-align: left;
-    border: 1px solid black;  
+    border: 1px solid black;
     cursor: pointer;
 
-    &:hover{
+    &:hover {
         background-color: $background-mouse;
     }
 }
+.size-small.table-body td {
+    text-align: center;
+}
 
-
-.current-day{
+.current-day {
     background-color: $background-selected;
 }
 
-td.month-outside{
-   color: lightgray;
-   cursor: unset;
-   &:hover{
-       background-color: initial;
-   }
+td.month-outside {
+    color: lightgray;
+    cursor: unset;
+    &:hover {
+        background-color: initial;
+    }
 }

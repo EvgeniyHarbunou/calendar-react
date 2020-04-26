@@ -12,6 +12,7 @@
     column-count: 2;
 }
 .modal-elem{
+    white-space: nowrap;
     cursor: pointer;
 }
 .today{
@@ -24,5 +25,19 @@
     border-radius: 4px;
     padding: 2px 20px;
     cursor: pointer;
+}
+.modal-header-month{
+   display: flex;
+   justify-content: center;
+}
+.modal-header-btn{
+    border: none;
+    background-color: inherit;
+    &:first-child{
+        margin-right: 3px;
+    }
+    &:last-child{
+        margin-left: 3px;
+    }
 }
 

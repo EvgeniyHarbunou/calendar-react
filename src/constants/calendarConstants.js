@@ -1,11 +1,11 @@
 export const daysOfWeek = [
-  "Monday",
-  "Tuesday",
-  "Wednesday",
-  "Thurday",
-  "Friday",
-  "Saturday",
-  "Sunday",
+  { default: "Monday", small: "Mon" },
+  { default: "Tuesday", small: "Tue" },
+  { default: "Wednesday", small: "Wed" },
+  { default: "Thurday", small: "Thu" },
+  { default: "Friday", small: "Fri" },
+  { default: "Saturday", small: "Sat" },
+  { default: "Sunday", small: "Sun" },
 ];
 
 export const months = [

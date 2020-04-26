@@ -1,29 +1,30 @@
 import React from "react";
 import classNames from "classnames";
-import PropTypes from 'prop-types';
-import { Day } from "../day";
+import PropTypes from "prop-types";
 import { daysOfWeek } from "../../constants/calendarConstants";
 
 import styles from "./styles.module.scss";
 
 const MonthCalendar = ({
+  size,
   handleChangeSelectedDay,
   calendar,
   selectedDay,
   selectedMonth,
 }) => {
+  const sizeClass = styles[`size-${size}`];
   return (
-    <table className={styles["month-table"]}>
+    <table className={classNames(styles["month-table"], sizeClass)}>
       <thead>
         <tr>
           {daysOfWeek.map((day) => (
-            <th className={styles["table-head"]} key={day}>
-              {day}
+            <th className={styles["table-head"]} key={day[size]}>
+              {day[size]}
             </th>
           ))}
         </tr>
       </thead>
-      <tbody className={styles["table-body"]}>
+      <tbody className={classNames(styles["table-body"], sizeClass)}>
         {calendar.map((week) => (
           <tr key={week.week}>
             {week.days.map((day) => (
@@ -41,7 +42,7 @@ const MonthCalendar = ({
                     : styles["month-outside"]
                 )}
               >
-                <Day day={day} />
+                <div>{day.date()}</div>
               </td>
             ))}
           </tr>
@@ -56,6 +57,7 @@ MonthCalendar.propTypes = {
   calendar: PropTypes.array.isRequired,
   selectedDay: PropTypes.object.isRequired,
   selectedMonth: PropTypes.object.isRequired,
+  size: PropTypes.string.isRequired,
 };
 
 export default MonthCalendar;

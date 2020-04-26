@@ -1,17 +1,14 @@
 import React from "react";
 import RadioButtonGroup from "../RadioButtonGroup";
-import { useDispatch, useSelector } from "react-redux";
+import { useDispatch } from "react-redux";
 import { calendarStatuses } from "../../constants/calendarStatuses";
 import HeaderDatePicker from "../datePicker";
 import { setSelectedCalendarState } from "../../redux/actions/dates";
-import { getSelectedCalendarState } from "../../redux/selectors/dates";
 import styles from "./style.module.scss";
 
 const HeaderCalendar = () => {
   const dispatch = useDispatch();
-  const { calendarState } = useSelector((state) => ({
-    calendarState: getSelectedCalendarState(state),
-  }));
+
   const handleChangeCalendarState = (value) => {
     dispatch(setSelectedCalendarState(value));
   };
