@@ -1,24 +1,17 @@
 import React from "react";
-import { useSelector, useDispatch } from "react-redux";
 import classNames from "classnames";
+import PropTypes from 'prop-types';
 import { Day } from "../day";
 import { daysOfWeek } from "../../constants/calendarConstants";
-import { getSelectedDate, getSelectedMonth } from "../../redux/selectors/dates";
-import { createDaysOfWeeks } from "../../helpers/datesHelper";
-import styles from "./style.module.scss";
-import { setSelectedDate } from "../../redux/actions/dates";
 
-const MonthCalendar = () => {
-  const dispatch = useDispatch();
-  const { selectedDay, selectedMonth } = useSelector((state) => ({
-    selectedDay: getSelectedDate(state),
-    selectedMonth: getSelectedMonth(state),
-  }));
-  let calendar = createDaysOfWeeks(selectedMonth);
-  const handleChangeSelectedDay = (day) => {
-    dispatch(setSelectedDate(day));
-  };
+import styles from "./styles.module.scss";
 
+const MonthCalendar = ({
+  handleChangeSelectedDay,
+  calendar,
+  selectedDay,
+  selectedMonth,
+}) => {
   return (
     <table className={styles["month-table"]}>
       <thead>
@@ -38,7 +31,7 @@ const MonthCalendar = () => {
                 onClick={
                   day.isSame(selectedMonth, "month")
                     ? () => handleChangeSelectedDay(day)
-                    : ()=>{}
+                    : () => {}
                 }
                 key={day}
                 className={classNames(
@@ -56,6 +49,13 @@ const MonthCalendar = () => {
       </tbody>
     </table>
   );
+};
+
+MonthCalendar.propTypes = {
+  handleChangeSelectedDay: PropTypes.func.isRequired,
+  calendar: PropTypes.array.isRequired,
+  selectedDay: PropTypes.object.isRequired,
+  selectedMonth: PropTypes.object.isRequired,
 };
 
 export default MonthCalendar;
