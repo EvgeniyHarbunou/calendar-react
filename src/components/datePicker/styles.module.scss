@@ -1,0 +1,21 @@
+@import "../../styles/main";
+
+.buttons-block{
+  position: relative;
+}
+
+.custom-input{
+  border: none;
+  background-color: inherit;
+  cursor: pointer;
+
+}
+.change-month{
+  padding: 7px;
+  margin: 5px;
+  background-color: inherit;
+  border-radius: 3px;
+  border: 1px solid $color-border-default;
+  cursor: pointer;
+ 
+}

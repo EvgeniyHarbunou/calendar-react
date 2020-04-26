@@ -3,5 +3,5 @@ import React from "react";
 
 export const Day = (day) => {
 
-return <>{day.day.date()}</>;
+return <div>{day.day.date()}</div>;
 };

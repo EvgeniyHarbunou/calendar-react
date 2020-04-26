@@ -1,13 +1,12 @@
 import React from "react";
 import { useSelector, useDispatch } from "react-redux";
-import * as m from "moment";
 import classNames from "classnames";
 import { Day } from "../day";
-import { daysOfWeek } from "../../constants/daysOfWeek";
+import { daysOfWeek } from "../../constants/calendarConstants";
 import { getSelectedDate, getSelectedMonth } from "../../redux/selectors/dates";
 import { createDaysOfWeeks } from "../../helpers/datesHelper";
-import { SET_SELECTED_DATE } from "../../redux/action-types/dates";
 import styles from "./style.module.scss";
+import { setSelectedDate } from "../../redux/actions/dates";
 
 const MonthCalendar = () => {
   const dispatch = useDispatch();
@@ -15,13 +14,9 @@ const MonthCalendar = () => {
     selectedDay: getSelectedDate(state),
     selectedMonth: getSelectedMonth(state),
   }));
-  // const startWeek = m().clone().startOf("month").isoWeek();
-  // const endWeek = m().clone().endOf("month").isoWeek();
-  const startOfMonth = m().clone().startOf("month");
-  let calendar = createDaysOfWeeks(startOfMonth);
-
+  let calendar = createDaysOfWeeks(selectedMonth);
   const handleChangeSelectedDay = (day) => {
-    dispatch({ type: SET_SELECTED_DATE, payload: day });
+    dispatch(setSelectedDate(day));
   };
 
   return (
@@ -43,7 +38,7 @@ const MonthCalendar = () => {
                 onClick={
                   day.isSame(selectedMonth, "month")
                     ? () => handleChangeSelectedDay(day)
-                    : ""
+                    : ()=>{}
                 }
                 key={day}
                 className={classNames(

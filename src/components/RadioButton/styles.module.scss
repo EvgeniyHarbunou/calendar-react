@@ -1,0 +1,53 @@
+@import '../../styles/vars';
+
+.title-label {
+  display: block;
+  cursor: pointer;
+  margin-bottom: 4px;
+}
+
+.label {
+  display: inline-block;
+  border: 1px solid $color-border-default;
+  overflow: hidden;
+
+  & + .label {
+    margin-left: -1px;
+  }
+
+  &:last-child {
+    border-radius: 0 4px 4px 0;
+  }
+
+  &:first-child {
+    border-radius: 4px 0 0 4px;
+  }
+}
+
+.label-button {
+  display: inline-block;
+  padding: 12px 16px;
+  transition: 0.3s;
+  cursor: pointer;
+}
+
+input[type='radio']:checked + .label-button {
+  background: $color-buttons-primary;
+  color: $color-text-light;
+  transition: 0.3s;
+}
+
+input[type='radio']:disabled + .label-button {
+  cursor: unset;
+  background: $color-radio-background-disabled;
+}
+input[type='radio']:disabled:checked + .label-button {
+  background: $color-radio-background-disabled-checked;
+}
+
+input[type='radio'] {
+  position: absolute;
+  width: 1px;
+  height: 1px;
+  clip: rect(0 0 0 0);
+}

@@ -1,0 +1,28 @@
+.modal {
+    position: absolute;
+    top: 40px;
+    left: 50%;
+    transform: translateX(-50%);
+    background-color: #fff;
+    border: 2px solid black;
+    border-radius: 5px;
+    padding: 15px;
+}
+.modal-list{
+    column-count: 2;
+}
+.modal-elem{
+    cursor: pointer;
+}
+.today{
+   width: 100%;
+    text-align: center;
+}
+.today-btn{
+    background-color: inherit;
+    border: 1px solid lightgray;
+    border-radius: 4px;
+    padding: 2px 20px;
+    cursor: pointer;
+}
+
