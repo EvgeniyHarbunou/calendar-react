@@ -26,7 +26,7 @@ const MonthCalendar = ({
       </thead>
       <tbody className={classNames(styles["table-body"], sizeClass)}>
         {calendar.map((week) => (
-          <tr key={week.week}>
+          <tr key={week.days[0]}>
             {week.days.map((day) => (
               <td
                 onClick={

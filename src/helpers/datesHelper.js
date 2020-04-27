@@ -1,19 +1,21 @@
 import moment, * as m from "moment";
 
 export const createDaysOfWeeksForMonth = (startOfMonth) => {
-  let startWeek = startOfMonth.clone().isoWeek();
-  let endWeek = startOfMonth.clone().endOf("month").isoWeek();
   const calendar = [];
-  for (let week = startWeek; week <= endWeek; week++) {
+  const startDay = startOfMonth.clone().startOf("week");
+  const lastWeekDayOfMonth = startOfMonth.clone().endOf("month").endOf("week");
+  for (
+    startDay;
+    startDay.isBefore(lastWeekDayOfMonth);
+    startDay.add(1, "week")
+  ) {
     calendar.push({
-      week: week,
       days: Array(7)
         .fill(0)
         .map((n, i) =>
-          m()
-            .week(week)
-            .startOf("week")
+          startDay
             .clone()
+            .startOf("week")
             .add(n + i, "day")
         ),
     });
