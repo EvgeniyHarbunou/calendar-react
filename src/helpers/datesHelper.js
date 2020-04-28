@@ -1,4 +1,4 @@
-import moment, * as m from "moment";
+import * as m from "moment";
 
 export const createDaysOfWeeksForMonth = (startOfMonth) => {
   const calendar = [];
@@ -82,4 +82,8 @@ export const createHoursOfDay = (day) => {
   }
 
   return days;
+};
+export const createDateTime = (date, hour, minutes) => {
+  const dateTime = new Date(`${date} ${hour}:${minutes}:00 `);
+  return m(dateTime);
 };

@@ -7,6 +7,7 @@ import {
   FORWARD_MONTH,
   SET_SELECTED_CALENDAR_STATE,
   SET_SELECTED_WEEK,
+  SET_EVENT,
 } from "../action-types/dates";
 import * as m from "moment";
 import { MONTH, WEEK, DAY } from "../../constants/calendarStatuses";
@@ -21,6 +22,7 @@ const initialState = {
   selectedDate: m().clone(),
   selectedMonth: m().clone().startOf("month"),
   selectedWeek: m().clone().startOf("week"),
+  events: [],
   selectedCalendarState: MONTH,
 };
 
@@ -131,6 +133,12 @@ export const datesReducer = (state = initialState, { type, payload }) => {
       return {
         ...state,
         selectedMonth: updatedMonth,
+      };
+    }
+    case SET_EVENT: {
+      return {
+        ...state,
+        events: [...state.events, payload],
       };
     }
     default:

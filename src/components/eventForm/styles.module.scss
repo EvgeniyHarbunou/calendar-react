@@ -1,0 +1,56 @@
+@import "../../styles/vars";
+
+.add-event {
+    background-color: #fff;
+}
+
+form {
+    padding: 10px 14px;
+}
+
+.input-block {
+    display: flex;
+    align-items: center;
+}
+
+.input-block label {
+    min-width: 80px;
+    text-align: right;
+    margin-right: 10px;
+}
+
+.input-block input {
+    padding: 0;
+    width: 100%;
+}
+
+.input-block input:not([type="date"]) {
+    padding: 2px 0;
+}
+
+.input-block input[type="number"] {
+    margin-right: 10px;
+}
+
+.input-block input[type="number"] + input[type="number"] {
+    margin-right: 0;
+    margin-left: 10px;
+}
+
+.input-block + .input-block {
+    margin-top: 10px;
+}
+.time-err {
+    color: $color-invalid;
+}
+
+.controller {
+    margin-top: 20px;
+    display: flex;
+    align-items: center;
+    justify-content: flex-end;
+
+    button {
+        margin-left: 10px;
+    }
+}
