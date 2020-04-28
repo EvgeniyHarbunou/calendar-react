@@ -42,3 +42,4 @@ export const setEvent = (event) => ({
   type: SET_EVENT,
   payload: event,
 });
+

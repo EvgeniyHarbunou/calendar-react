@@ -11,6 +11,7 @@ const MonthCalendar = ({
   calendar,
   selectedDay,
   selectedMonth,
+  isShowEvents,
 }) => {
   const sizeClass = styles[`size-${size}`];
   return (
@@ -26,23 +27,23 @@ const MonthCalendar = ({
       </thead>
       <tbody className={classNames(styles["table-body"], sizeClass)}>
         {calendar.map((week) => (
-          <tr key={week.days[0]}>
+          <tr key={week.days[0].startDay}>
             {week.days.map((day) => (
               <td
                 onClick={
-                  day.isSame(selectedMonth, "month")
-                    ? () => handleChangeSelectedDay(day)
+                  day.startDay.isSame(selectedMonth, "month")
+                    ? () => handleChangeSelectedDay(day.startDay)
                     : () => {}
                 }
-                key={day}
+                key={day.startDay}
                 className={classNames(
-                  day.isSame(selectedDay, "date") ? styles["current-day"] : "",
-                  day.isSame(selectedMonth, "month")
+                  day.startDay.isSame(selectedDay, "date") ? styles["current-day"] : "",
+                  day.startDay.isSame(selectedMonth, "month")
                     ? ""
                     : styles["month-outside"]
                 )}
               >
-                <div>{day.date()}</div>
+                <div>{day.startDay.date()}</div>
               </td>
             ))}
           </tr>
@@ -51,6 +52,9 @@ const MonthCalendar = ({
     </table>
   );
 };
+MonthCalendar.defaultProps = {
+  isShowEvents: false,
+};
 
 MonthCalendar.propTypes = {
   handleChangeSelectedDay: PropTypes.func.isRequired,
@@ -58,6 +62,7 @@ MonthCalendar.propTypes = {
   selectedDay: PropTypes.object.isRequired,
   selectedMonth: PropTypes.object.isRequired,
   size: PropTypes.string.isRequired,
+  isShowEvents: PropTypes.bool,
 };
 
 export default MonthCalendar;

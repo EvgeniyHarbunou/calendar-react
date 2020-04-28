@@ -12,14 +12,18 @@ export const createDaysOfWeeksForMonth = (startOfMonth) => {
     calendar.push({
       days: Array(7)
         .fill(0)
-        .map((n, i) =>
-          startDay
-            .clone()
-            .startOf("week")
-            .add(n + i, "day")
-        ),
+        .map((n, i) => {
+          return {
+            startDay: startDay
+              .clone()
+              .startOf("week")
+              .add(n + i, "day"),
+            events: [],
+          };
+        }),
     });
   }
+  console.log("cal", calendar);
   return calendar;
 };
 

@@ -5,9 +5,11 @@ import { validateTime } from "../../helpers/inputValidators";
 import styles from "./styles.module.scss";
 import { useDispatch } from "react-redux";
 import { setEvent } from "../../redux/actions/dates";
+import { closeModal } from "../../redux/actions/modal";
 
 const EventForm = () => {
   const createEvent = () => {
+    delete err.stateError;
     const name = inputs.name;
     const description = inputs.description;
     const startDate = createDateTime(
@@ -23,15 +25,19 @@ const EventForm = () => {
     const invalidDate = validateTime(startDate, endDate);
     setError({ invalidDate });
 
-    const isError = Object.keys(err).find((item) => item === true);
-    if (!isError) {
+    if (!invalidDate) {
       const event = {
         name,
         description,
         startDate,
         endDate,
       };
-      dispatch(setEvent(event));
+      try {
+        dispatch(setEvent(event));
+        dispatch(closeModal());
+      } catch (e) {
+        setError({ stateError: e.message });
+      }
     }
   };
   const dispatch = useDispatch();
@@ -41,14 +47,13 @@ const EventForm = () => {
       name: "",
       description: "",
       date: "",
-      timeFromHour: "",
-      timeFromMinutes: "",
-      timeToHour: "",
-      timeToMinutes: "",
+      timeFromHour: "00",
+      timeFromMinutes: "00",
+      timeToHour: "01",
+      timeToMinutes: "00",
     },
     createEvent
   );
-  console.log("err", err);
   return (
     <div className={styles["add-event"]}>
       <h1>New Event</h1>
@@ -62,6 +67,7 @@ const EventForm = () => {
             name="name"
             onChange={handleInputChange}
             value={inputs.name}
+            required
           />
         </div>
         <div className={styles["input-block"]}>
@@ -132,8 +138,12 @@ const EventForm = () => {
           <small className={styles["time-err"]}>Time incorect </small>
         )}
         <div className={styles["controller"]}>
-          {err && <span>Lorem ipsum dolor sit.</span>}
-          <button type="submit">Create</button>
+          {err.stateError && (
+            <small className={styles["time-err"]}>{err.stateError}</small>
+          )}
+          <button type="submit" className={styles.button}>
+            Create
+          </button>
         </div>
       </form>
     </div>

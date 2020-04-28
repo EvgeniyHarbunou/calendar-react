@@ -2,7 +2,7 @@
     display: flex;
     justify-content: center;
     align-items: center;
-    width: 100%;
+    width: 100vw;
     height: 100vh;
     position: absolute;
     top: 0;
@@ -10,3 +10,9 @@
     background-color: rgba(197, 194, 194, 0.151);
 }
 
+.form {
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+}

@@ -136,6 +136,16 @@ export const datesReducer = (state = initialState, { type, payload }) => {
       };
     }
     case SET_EVENT: {
+      const events = state.events;
+      events.forEach((event) => {
+        if (
+          payload.startDate.isBetween(event.startDate, event.endDate) ||
+          payload.startDate.isBetween(event.startDate, event.endDate) || 
+          payload.startDate.isSame(event.startDate)
+        ) {
+          throw new Error("This event crosses with anoter event");
+        }
+      });
       return {
         ...state,
         events: [...state.events, payload],

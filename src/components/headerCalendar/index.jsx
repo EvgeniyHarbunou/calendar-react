@@ -1,6 +1,6 @@
-import React, { useState } from "react";
+import React from "react";
 import RadioButtonGroup from "../RadioButtonGroup";
-import { useDispatch } from "react-redux";
+import { useDispatch, useSelector } from "react-redux";
 import { calendarStatuses } from "../../constants/calendarStatuses";
 import HeaderDatePicker from "../datePicker";
 import { setSelectedCalendarState } from "../../redux/actions/dates";
@@ -8,16 +8,22 @@ import AddEventButton from "../addEventButton";
 import Modal from "../modal";
 import styles from "./style.module.scss";
 import EventForm from "../eventForm";
+import { getModalState } from "../../redux/selectors/dates";
+import { openModal, closeModal } from "../../redux/actions/modal";
 
 const HeaderCalendar = () => {
   const dispatch = useDispatch();
-  const [isShowModal, setShowModal] = useState(true);
   const handleChangeCalendarState = (value) => {
     dispatch(setSelectedCalendarState(value));
   };
-
-  const handleSetModal = () => {
-    setShowModal(!isShowModal);
+  const { modal } = useSelector((state) => ({
+    modal: getModalState(state),
+  }));
+  const handleOpenModal = () => {
+    dispatch(openModal("create-event"));
+  };
+  const handleCloseModal = () => {
+    dispatch(closeModal("create-event"));
   };
 
   return (
@@ -33,9 +39,9 @@ const HeaderCalendar = () => {
       <div className={styles["chose-format"]}>
         <HeaderDatePicker />
       </div>
-      <AddEventButton handleOpenModal={handleSetModal} />
-      {isShowModal && (
-        <Modal handleCloseModal={handleSetModal}>
+      <AddEventButton handleOpenModal={handleOpenModal} />
+      {modal.isOpen && (
+        <Modal handleCloseModal={handleCloseModal} modalType={modal.modalType}>
           <EventForm />
         </Modal>
       )}

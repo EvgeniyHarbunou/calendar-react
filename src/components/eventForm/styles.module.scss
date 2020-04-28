@@ -1,7 +1,11 @@
 @import "../../styles/vars";
 
 .add-event {
+    padding: 10px;
     background-color: #fff;
+    border: 2px solid black;
+    border-radius: 4px;
+    box-shadow: 2px 2px 20px 0px rgba(0, 0, 0, 1);
 }
 
 form {
@@ -22,6 +26,8 @@ form {
 .input-block input {
     padding: 0;
     width: 100%;
+    border: 1px solid gray;
+    border-radius: 2px;
 }
 
 .input-block input:not([type="date"]) {
@@ -53,4 +59,11 @@ form {
     button {
         margin-left: 10px;
     }
+}
+.button {
+    border: 1px solid lightgray;
+    border-radius: 4px;
+    font-weight: bold;
+    padding: 6px;
+    background-color: #fff;
 }
