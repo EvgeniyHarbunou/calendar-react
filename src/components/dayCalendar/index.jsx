@@ -15,6 +15,7 @@ const DayCalendar = ({ dayCalendarList }) => {
                 <Event
                   isDayMode={true}
                   hour={hour}
+                  index={index}
                   key={event.name + event.startDate + event.endDate + index}
                   event={event}
                 />
