@@ -1,7 +1,7 @@
 @import "../../styles/vars";
 
-.month-table{
-   
+.week-table{
+    table-layout: fixed;
     border: 2px solid black;
     border-collapse: collapse;
 }
@@ -10,7 +10,8 @@
 }
 .table-body td{
     width: 150px;
-    height: 80vh;
+    height: 25vh;
+    vertical-align: top;
     text-align: left;
     border: 1px solid black;  
     cursor: pointer;
@@ -18,6 +19,11 @@
     &:hover{
         background-color: $background-mouse;
     }
+}
+.td-container{
+    overflow-y: auto;
+    max-height: 25vh;
+
 }
 
 .current-day{

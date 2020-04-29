@@ -1,0 +1,17 @@
+.event-container {
+    max-height: 30px;
+    max-width: 150px;
+    overflow: hidden;
+    background-color: lightpink;
+    text-align: center;
+    border-radius: 10px;
+}
+
+.event-container + .event-container {
+    margin-top: 3px;
+}
+.event-container span {
+    color: black;
+    font-size: 0.725rem;
+    font-weight: 500;
+}

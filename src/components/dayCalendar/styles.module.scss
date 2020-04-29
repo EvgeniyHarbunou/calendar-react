@@ -1,20 +1,21 @@
 @import "../../styles/vars";
 
-.table{
+.table {
     width: 1070px;
     border: 2px solid black;
     border-collapse: collapse;
 }
-.hours{
-
+.hours {
     width: 15%;
     height: 20px;
     border: 1px solid black;
 }
-.events{
+.row{
+    height: 30px;
+}
+.events {
     width: 85%;
     height: 20px;
     border: 1px solid black;
+    position: relative;
 }
-
-

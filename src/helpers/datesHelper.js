@@ -23,7 +23,6 @@ export const createDaysOfWeeksForMonth = (startOfMonth) => {
         }),
     });
   }
-  console.log("cal", calendar);
   return calendar;
 };
 
@@ -32,7 +31,7 @@ export const createDaysOfWeek = (startOfWeekDate) => {
   const endOfWeek = startOfWeekDate.clone().endOf("week");
   let weekDays = [];
   for (let week = startOfWeek; week <= endOfWeek; week.add(1, "day")) {
-    weekDays.push(week.clone());
+    weekDays.push({ startDay: week.clone(), events: [] });
   }
   return weekDays;
 };
@@ -81,10 +80,10 @@ export const createHoursOfDay = (day) => {
         .endOf("hour")
         .add(1, "minute")
         .format("HH-mm")}`,
-      value: hour,
+      value: hour.clone(),
+      events: []
     });
   }
-
   return days;
 };
 export const createDateTime = (date, hour, minutes) => {

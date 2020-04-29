@@ -13,11 +13,15 @@ import {
   createDaysOfWeek,
   createHoursOfDay,
 } from "../../helpers/datesHelper";
-import { setSelectedDate } from "../../redux/actions/dates";
+import { setSelectedDate, setSelectedCalendarState } from "../../redux/actions/dates";
 import MonthCalendar from "../monthCalendar";
 import WeekCalendar from "../weekCalendar";
 import DayCalendar from "../dayCalendar";
-import { addEventsToMonthCalendar } from "../../helpers/eventsHelper";
+import {
+  addEventsToMonthCalendar,
+  addEventsToWeekCalendar,
+  addEventsToHoursOfDay,
+} from "../../helpers/eventsHelper";
 import { tablesSize } from "../../constants/tableSize";
 
 const Calendar = () => {
@@ -35,13 +39,19 @@ const Calendar = () => {
     calendarState: getSelectedCalendarState(state),
     events: getEvents(state),
   }));
-  const calendar = createDaysOfWeeksForMonth(selectedMonth);
-  // const calendarWithEvents = addEventsToMonthCalendar(calendar, selectedMonth, events);
-  const weekCalendarList = createDaysOfWeek(selectedWeek);
-  const dayCalendarList = createHoursOfDay(selectedDay);
+  let calendar = createDaysOfWeeksForMonth(selectedMonth);
+  calendar = addEventsToMonthCalendar(calendar, events);
+  let weekCalendarList = createDaysOfWeek(selectedWeek);
+  weekCalendarList = addEventsToWeekCalendar(weekCalendarList, events);
+  let dayCalendarList = createHoursOfDay(selectedDay);
+   addEventsToHoursOfDay(dayCalendarList, events);
   const handleChangeSelectedDay = (day) => {
     dispatch(setSelectedDate(day));
   };
+  const handleClickMore = (day)=>{
+    dispatch(setSelectedDate(day));
+    dispatch(setSelectedCalendarState(DAY))
+  }
 
   if (calendarState === MONTH)
     return (
@@ -51,7 +61,9 @@ const Calendar = () => {
         selectedDay={selectedDay}
         selectedMonth={selectedMonth}
         handleChangeSelectedDay={handleChangeSelectedDay}
+        handleClickMore={handleClickMore}
         isShowEvents={true}
+
       />
     );
   else if (calendarState === WEEK)

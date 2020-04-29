@@ -3,6 +3,7 @@ import PropTypes from "prop-types";
 import classNames from "classnames";
 import { daysOfWeek } from "../../constants/calendarConstants";
 import styles from "./styles.module.scss";
+import Event from "../event";
 
 const WeekCalendar = ({
   handleChangeSelectedDay,
@@ -11,7 +12,7 @@ const WeekCalendar = ({
   selectedMonth,
 }) => {
   return (
-    <table className={styles["month-table"]}>
+    <table className={styles["week-table"]}>
       <thead>
         <tr>
           {daysOfWeek.map((day) => (
@@ -25,17 +26,24 @@ const WeekCalendar = ({
         <tr>
           {weekCalendarList.map((day) => (
             <td
-              key={day}
+              key={day.startDay}
               className={classNames(
-                day.isSame(selectedDay, "date") ? styles["current-day"] : "",
-                day.isSame(selectedMonth, "month")
+                day.startDay.isSame(selectedDay, "date")
+                  ? styles["current-day"]
+                  : "",
+                day.startDay.isSame(selectedMonth, "month")
                   ? ""
                   : styles["month-outside"],
                 styles["days"]
               )}
-              onClick={() => handleChangeSelectedDay(day)}
+              onClick={() => handleChangeSelectedDay(day.startDay)}
             >
-              <div>{day.date()}</div>
+              <div className={styles["td-container"]}>
+                <div>{day.startDay.date()}</div>
+                {day.events.map((event) => (
+                  <Event event={event} key={event.startDate + event.name} />
+                ))}
+              </div>
             </td>
           ))}
         </tr>

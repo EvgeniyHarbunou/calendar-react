@@ -22,7 +22,70 @@ const initialState = {
   selectedDate: m().clone(),
   selectedMonth: m().clone().startOf("month"),
   selectedWeek: m().clone().startOf("week"),
-  events: [],
+  events: [
+    {
+      name: 'meeting 1',
+      description: 'goodMeeting',
+      startDate: m().clone().startOf('day'),
+      endDate: m().clone().startOf('day').add(1, 'hour'),
+    },
+    {
+      name: 'meeting mitt',
+      description: 'goodMeeting',
+      startDate: m().clone().startOf('day').add(1, 'hour').add(25, 'minute'),
+      endDate: m().clone().startOf('day').add(2, 'hour'),
+    },
+    {
+      name: 'meeting 3',
+      description: 'goodMeeting',
+      startDate: m().clone().startOf('day').add(2, 'hour'),
+      endDate: m().clone().startOf('day').add(3, 'hour'),
+    },
+    {
+      name: 'meeting 4',
+      description: 'goodMeeting',
+      startDate: m().clone().startOf('day').add(3, 'hour'),
+      endDate: m().clone().startOf('day').add(4, 'hour'),
+    },
+    {
+      name: 'meeting 4',
+      description: 'goodMeeting',
+      startDate: m().clone().startOf('day').add(4, 'hour'),
+      endDate: m().clone().startOf('day').add(5, 'hour'),
+    },
+    {
+      name: 'meeting 4',
+      description: 'goodMeeting',
+      startDate: m().clone().startOf('day').add(7, 'hour'),
+      endDate: m().clone().startOf('day').add(8, 'hour'),
+    },
+    {
+      name: 'meeting 4',
+      description: 'goodMeeting',
+      startDate: m().clone().startOf('day').add(9, 'hour'),
+      endDate: m().clone().startOf('day').add(10, 'hour'),
+    },
+    {
+      name: 'meetingdddd 2',
+      description: 'goodMeeting',
+      startDate: m().clone().add(1, 'hour').add(30, 'minutes'),
+      endDate: m().clone().add(3, 'hour'),
+    },
+    {
+      name: 'meeting 3',
+      description: 'goodMeeting',
+      startDate: m().clone().startOf('day').add(4, 'hour'),
+      endDate: m().clone().startOf('day').add(5, 'hour'),
+    },
+    {
+      name: 'meeting and',
+      description: 'goodMeeting',
+      startDate: m().clone().startOf('day').add(2, 'day'),
+      endDate: m().clone().startOf('day').add(2, 'day').add(1, 'hour'),
+    },
+
+
+  ],
   selectedCalendarState: MONTH,
 };
 
